@@ -1,0 +1,5 @@
+build:
+  docker:
+    eco: Dockerfile
+run:
+  eco: bash start
