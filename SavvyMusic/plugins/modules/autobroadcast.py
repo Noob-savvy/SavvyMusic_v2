@@ -2,6 +2,7 @@ import asyncio
 import random
 import datetime
 from SavvyMusic import app
+from SAVVY.PICS import SAVVY_PIC
 from pyrogram import Client
 from SavvyMusic.utils.database import get_served_chats
 from config import AUTO_GCAST
@@ -9,15 +10,6 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 AUTO_GCASTS = "{AUTO_GCAST}" if AUTO_GCAST else False
 
-PHOTO (""
-
-
-
-
-
-
-
-       )
 
 MESSAGE = f"""**๏ ᴛʜɪs ɪs ᴀᴅᴠᴀɴᴄᴇᴅ ᴍᴜsɪᴄ ᴘʟᴀʏᴇʀ ʙᴏᴛ ғᴏʀ ᴛᴇʟᴇɢʀᴀᴍ ɢʀᴏᴜᴘs + ᴄʜᴀɴɴᴇʟs ᴠᴄ. 💌
 
@@ -53,7 +45,7 @@ async def send_message_to_chats():
             chat_id = chat_info.get('chat_id')
             if isinstance(chat_id, int):  # Check if chat_id is an integer
                 try:
-                    await app.send_photo(chat_id, random.choice(PHOTO), caption=MESSAGE, reply_markup=BUTTON)
+                    await app.send_photo(chat_id, random.choice(SAVVY_PIC), caption=MESSAGE, reply_markup=BUTTON)
                     await asyncio.sleep(5)  # Sleep for 5 second between sending messages
                 except Exception as e:
                     pass  # Do nothing if an error occurs while sending message
