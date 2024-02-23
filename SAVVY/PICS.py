@@ -19,3 +19,10 @@ SAVVY_PIC = [
   "https://telegra.ph/file/7c73c9c0306c4aacc21ba.jpg",
   "https://telegra.ph/file/fcde690b63c8ecb312106.jpg",
 ]
+
+
+ # FOR IMPOTING THIS IMAGES IN ANY MODULE USE THIS LINE 
+   WITHOUT #
+ 
+
+# from SAVVY.PICS import SAVVY_PIC
