@@ -1,4 +1,4 @@
-## Alexa Music Assets Folder
+## Savvy Music Assets Folder
 
 # Contains all the fonts and thumb related files.
 
