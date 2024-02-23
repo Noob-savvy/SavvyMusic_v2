@@ -2,7 +2,7 @@
 
 import random
 import asyncio
-
+import random
 from pyrogram import filters
 from pyrogram import enums, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
@@ -30,10 +30,8 @@ from SavvyMusic.utils.database import (
 from SavvyMusic.utils.decorators.language import LanguageStart
 from SavvyMusic.utils.inline import help_pannel, private_panel, start_pannel
 from SavvyMusic.utils.command import commandpro
-
+from SAVVY.PICS import SAVVY_PIC
 loop = asyncio.get_running_loop()
-
-PHOTO = ""
 
 
 @app.on_message(
@@ -179,10 +177,10 @@ async def start_comm(client, message: Message, _):
         except:
             OWNER = None
         out = private_panel(_, app.username, OWNER)
-        if config.START_IMG_URL:
+        if SAVVY.PICS.SAVVY_PIC:
             try:
                 await message.reply_photo(
-                    photo=config.START_IMG_URL,
+                    random.choice(SAVVY_PIC),
                     caption=_["start_2"].format(config.MUSIC_BOT_NAME),
                     reply_markup=InlineKeyboardMarkup(out),
                 )
@@ -270,10 +268,10 @@ async def welcome(client, message: Message):
             return
 
 
-@app.on_message(commandpro(["/alive", "Alexa"]))
+@app.on_message(commandpro(["/alive", "Savvy"]))
 async def alive(client, message: Message):
     await message.reply_photo(
-        random.choice=(PHOTO),
+        random.choice(SAVVY_PIC),
         caption=f"""**HEY, I AM {MUSIC_BOT_NAME}**
 
 ━━━━━━ 🌟✿🌟 ━━━━━━
