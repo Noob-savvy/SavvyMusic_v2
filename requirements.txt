@@ -7,7 +7,6 @@ gitpython
 hachoir
 heroku3
 lyricsgenius
-logging
 motor==3.0.0
 pillow==9.5.0
 psutil
