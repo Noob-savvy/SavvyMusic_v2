@@ -11,23 +11,18 @@ async def play_logs(message, streamtype):
         else:
             chatusername = "ᴩʀɪᴠᴀᴛᴇ ᴄʜᴀᴛ"
         logger_text = f"""
-**━━━━━━━━━━━━━━━**
-**💞 {MUSIC_BOT_NAME} ᴍᴜsɪᴄ ʟᴏɢs **
-**━━━━━━━━━━━━━━━**
-**🌹️ 𝐂𝐡𝐚𝐭 𝐍𝐚𝐌𝐞 : >** {message.chat.title} [`{message.chat.id}`]
-**━━━━━━━━━━━━━━━**
-**🥀 𝐍𝐚𝐌𝐞 : ›** {message.from_user.mention}
-**━━━━━━━━━━━━━━━**
-**🌸 𝐔𝐬𝐞𝐑𝐧𝐚𝐌𝐞 : ›** @{message.from_user.username}
-**━━━━━━━━━━━━━━━**
-**🌷 𝐈𝐃  : ›** `{message.from_user.id}`
-**━━━━━━━━━━━━━━━**
-**🌿 𝐂𝐡𝐚𝐭 𝐥𝐢𝐧𝐤: >** {chatusername}
-**━━━━━━━━━━━━━━━**
-**🌻 𝐒𝐞𝐀𝐫𝐜𝐇𝐞𝐝 𝐅𝐨𝐫:** {message.text}
-**━━━━━━━━━━━━━━━**
-**💐 𝐒𝐭𝐫𝐄𝐚𝐦 𝐓𝐲𝐏𝐞:** {streamtype}
-**━━━━━━━━━━━━━━━**"""
+<b>{app.mention} ᴘʟᴀʏ ʟᴏɢ</b>
+
+<b>ᴄʜᴀᴛ ɪᴅ :</b> <code>{message.chat.id}</code>
+<b>ᴄʜᴀᴛ ɴᴀᴍᴇ :</b> {message.chat.title}
+<b>ᴄʜᴀᴛ ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.chat.username}
+
+<b>ᴜsᴇʀ ɪᴅ :</b> <code>{message.from_user.id}</code>
+<b>ɴᴀᴍᴇ :</b> {message.from_user.mention}
+<b>ᴜsᴇʀɴᴀᴍᴇ :</b> @{message.from_user.username}
+
+<b>ǫᴜᴇʀʏ :</b> {message.text.split(None, 1)[1]}
+<b>sᴛʀᴇᴀᴍᴛʏᴘᴇ :</b> {streamtype}"""
         if message.chat.id != LOG_GROUP_ID:
             try:
                 await app.send_message(
