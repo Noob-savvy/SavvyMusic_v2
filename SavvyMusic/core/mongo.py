@@ -1,4 +1,4 @@
-from motor.motor_asyncio import AsyncIOMotorClient as _mongo_client_
+from motor.motor_asyncio import AsyncIOMotorClient 
 from pymongo import MongoClient
 from pyrogram import Client
 
@@ -26,7 +26,7 @@ if config.MONGO_DB_URI is None:
     mongodb = _mongo_async_[username]
     pymongodb = _mongo_sync_[username]
 else:
-    _mongo_async_ = _mongo_client_(config.MONGO_DB_URI)
+    _mongo_async_ = AsyncIOMotorClient(config.MONGO_DB_URI)
     _mongo_sync_ = MongoClient(config.MONGO_DB_URI)
     mongodb = _mongo_async_.Savvy
     pymongodb = _mongo_sync_.Savvy
