@@ -6,7 +6,7 @@ from strings import get_command
 from SavvyMusic import app
 from SavvyMusic.misc import SUDOERS
 from SavvyMusic.utils.database import set_video_limit
-from Savvy Music.utils.decorators.language import language
+from SavvyMusic.utils.decorators.language import language
 
 VIDEOLIMIT_COMMAND = get_command("VIDEOLIMIT_COMMAND")
 
