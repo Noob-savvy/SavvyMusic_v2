@@ -15,7 +15,7 @@ from pytgcalls.exceptions import (
     NoActiveGroupCall,
 )
 from pytgcalls.types import JoinedGroupCallParticipant, LeftGroupCallParticipant, Update
-from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped, AudioImagePiped
+from pytgcalls.types.stream.legacy import AudioPiped, AudioVideoPiped, AudioImagePiped
 from pytgcalls.types.stream import StreamAudioEnded
 
 import config
