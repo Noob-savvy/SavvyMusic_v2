@@ -42,7 +42,7 @@ async def gen_thumb(videoid, user_id, theme):
         for result in (await results.next())["result"]:
             try:
                 title = result["title"][:30]
-                title = re.sub("\W+", " ", title)
+                title = re.sub("\\W+", " ", title)
                 title = title.title()
             except:
                 title = "Unsupported Title"
@@ -201,7 +201,7 @@ async def gen_qthumb(videoid, user_id, theme):
         for result in (await results.next())["result"]:
             try:
                 title = result["title"][:30]
-                title = re.sub("\W+", " ", title)
+                title = re.sub("\\W+", " ", title)
                 title = title.title()
             except:
                 title = "Unsupported Title"
