@@ -272,32 +272,32 @@ async def welcome(client, message: Message):
 async def alive(client, message: Message):
     await message.reply_photo(
         random.choice(SAVVY_PIC),
-        caption=f"""**HEY, I AM {MUSIC_BOT_NAME}**
+        caption=f"""**HEY, I AM {config.MUSIC_BOT_NAME}**
 
-━━━━━━ 🌟✿🌟 ━━━━━━
+━━━━━━ ✿ ━━━━━━
 ✪ **CREATOR:** [𝕯𝖎𝖛𝖞𝖆𝖓𝖘𝖍𝖚 𝕽𝖆𝖓𝖆](https://instagram.com/ranavanshi_divy)
 ➲ **PYTHON:** 3.11
 ➲ **BOT VERSION:** `2.0`
 ➲ **SUPPORT GROUP:** [Support](https://t.me/savvy_robot_support)
-━━━━━━ 🌟✿🌟 ━━━━━━""",
+━━━━━━ ✿ ━━━━━━""",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("🌼 𝐒ᴀᴠᴠʏ 𝐒ᴜᴘᴘᴏʀᴛ 💮", url=f"https://t.me/savvy_robot_support")]]
+            [[InlineKeyboardButton("𝐒ᴀᴠᴠʏ 𝐒ᴜᴘᴘᴏʀᴛ ", url=f"https://t.me/savvy_robot_support")]]
         ),
     )
 
 
-@app.on_message(commandpro(["/verify", "alexaverification"]))
+@app.on_message(commandpro(["/verify", "savvyverification"]))
 async def verify(client, message: Message):
     if await is_served_user(message.from_user.id):
         await message.reply_text(
-            text="😂 ᴅᴇᴀʀ ʏᴏᴜ ᴀʀᴇ ᴀʟʀᴇᴀᴅʏ ᴠᴇʀɪғɪᴇᴅ",
+            text="ʏᴏᴜ ᴀʀᴇ ᴀʟʀᴇᴀᴅʏ ᴠᴇʀɪғɪᴇᴅ",
         )
         return
     await add_served_user(message.from_user.id)
     await message.reply_photo(
-        photo=f"https://telegra.ph/file/7f08acd78577f99f60ff5.png",
-        caption=f"""━━━━━━━━━━━━━━━━━━━━━━━━\n\n✪ **ᴄᴏɴɢʀᴀᴛᴜʟᴀᴛɪᴏɴ** 🎉\n✪ ɴᴏᴡ ʏᴏᴜ ᴀʀᴇ ᴠᴇʀɪғɪᴇᴅ ᴍᴇᴍʙᴇʀ ɢᴏ ʙᴀᴄᴋ ᴀɴᴅ ᴇɴᴊᴏʏ ᴏᴜʀ sᴇʀᴠɪᴄᴇ ᴀɴᴅ ᴘʟᴀʏ ᴍᴜsɪᴄ 🌼 ..\n\n━━━━━━━━━━━━━━━━━━━━━━━━""",
+        random.choice(SAVVY_PIC),
+        caption=f"""━━━━━━━━━━━━━━━━━━━━━━━━\n\n✪ **ᴄᴏɴɢʀᴀᴛᴜʟᴀᴛɪᴏɴ** 🎉\n✪ ɴᴏᴡ ʏᴏᴜ ᴀʀᴇ ᴠᴇʀɪғɪᴇᴅ ᴍᴇᴍʙᴇʀ ɢᴏ ʙᴀᴄᴋ ᴀɴᴅ ᴇɴᴊᴏʏ ᴏᴜʀ sᴇʀᴠɪᴄᴇ ᴀɴᴅ ᴘʟᴀʏ ᴍᴜsɪᴄ  ..\n\n━━━━━━━━━━━━━━━━━━━━━━━━""",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("🌼 𝐒ᴀᴠᴠʏ 𝐒ᴜᴘᴘᴏʀᴛ 💮", url=f"https://t.me/savvy_robot_support")]]
+            [[InlineKeyboardButton("𝐒ᴀᴠᴠʏ 𝐒ᴜᴘᴘᴏʀᴛ", url=f"https://t.me/savvy_robot_support")]]
         ),
     )
