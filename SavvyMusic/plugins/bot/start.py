@@ -177,7 +177,7 @@ async def start_comm(client, message: Message, _):
         except:
             OWNER = None
         out = private_panel(_, app.username, OWNER)
-        if SAVVY.PICS.SAVVY_PIC:
+        if config.START_IMG_URL:
             try:
                 await message.reply_photo(
                     random.choice(SAVVY_PIC),
