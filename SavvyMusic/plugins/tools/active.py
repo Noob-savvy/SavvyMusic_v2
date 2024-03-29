@@ -7,7 +7,7 @@ from pyrogram.types import Message
 from strings import get_command
 from SavvyMusic import app
 from SavvyMusic.misc import SUDOERS
-from SsvvyMusic.utils.database.memorydatabase import (
+from SavvyMusic.utils.database.memorydatabase import (
     get_active_chats,
     get_active_video_chats,
 )
