@@ -15,7 +15,7 @@ MESSAGE = f"""**๏ ᴛʜɪs ɪs ᴀᴅᴠᴀɴᴄᴇᴅ ᴍᴜsɪᴄ ᴘʟᴀʏ
 
  ᴘʟᴀʏ + ᴠᴘʟᴀʏ + ᴄᴘʟᴀʏ 
 
-➥ sᴜᴘᴘᴏʀᴛᴇᴅ ᴡᴇʟᴄᴏᴍᴇ - ʟᴇғᴛ ɴᴏᴛɪᴄᴇ, ʙᴀɴ - ᴍᴜᴛᴇ, ʟʏʀɪᴄs, sᴏɴɢ - ᴠɪᴅᴇᴏ ᴅᴏᴡɴʟᴏᴀᴅ, sᴜʙsᴄʀɪᴘᴛɪᴏɴ ғᴏʀ ᴘʀᴏᴍᴏᴛɪᴏɴ, ᴇᴛᴄ... ❤️
+➥ sᴜᴘᴘᴏʀᴛᴇᴅ ᴡᴇʟᴄᴏᴍᴇ - ʟᴇғᴛ ɴᴏᴛɪᴄᴇ, ʙᴀɴ - ᴍᴜᴛᴇ, ʟʏʀɪᴄs, sᴏɴɢ - ᴠɪᴅᴇᴏ ᴅᴏᴡɴʟᴏᴀᴅ, ᴇᴛᴄ... ❤️
 
 ➥ ᴄᴏɴᴛᴀᴄᴛ sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ ғᴏʀ ᴍᴏʀᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ
 
@@ -27,7 +27,8 @@ BUTTON = InlineKeyboardMarkup(
     [
           [
             InlineKeyboardButton("๏ 𝐀ᴅᴅ 𝐌ᴇ ๏", url=f"https://t.me/{app.username}?startgroup=s&admin=delete_messages+manage_video_chats+pin_messages+invite_users")
-          ]
+          ],
+     
           [
             InlineKeyboardButton("๏ 𝐒ᴜᴘᴘᴏʀᴛ ๏", url=f"https://t.me/savvy_robot_support")
         
