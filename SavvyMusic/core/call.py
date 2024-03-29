@@ -13,7 +13,6 @@ from pytgcalls import PyTgCalls, StreamType
 from pytgcalls.exceptions import (
     AlreadyJoinedError,
     NoActiveGroupCall,
-    TelegramServerError,
 )
 from pytgcalls.types import JoinedGroupCallParticipant, LeftGroupCallParticipant, Update
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped, AudioImagePiped
@@ -308,10 +307,6 @@ class Call(PyTgCalls):
         except AlreadyJoinedError:
             raise AssistantErr(
                 "**ᴀssɪsᴛᴀɴᴛ ᴀʟʀᴇᴀᴅʏ ɪɴ ᴠɪᴅᴇᴏᴄʜᴀᴛ**\n\nᴍᴜsɪᴄ ʙᴏᴛ sʏsᴛᴇᴍs ᴅᴇᴛᴇᴄᴛᴇᴅ ᴛʜᴀᴛ ᴀssɪᴛᴀɴᴛ ɪs ᴀʟʀᴇᴀᴅʏ ɪɴ ᴛʜᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛ, ɪғ ᴛʜɪs ᴩʀᴏʙʟᴇᴍ ᴄᴏɴᴛɪɴᴜᴇs ʀᴇsᴛᴀʀᴛ ᴛʜᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛ ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ."
-            )
-        except TelegramServerError:
-            raise AssistantErr(
-                "**ᴛᴇʟᴇɢʀᴀᴍ sᴇʀᴠᴇʀ ᴇʀʀᴏʀ**\n\nᴩʟᴇᴀsᴇ ᴛᴜʀɴ ᴏғғ ᴀɴᴅ ʀᴇsᴛᴀʀᴛ ᴛʜᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛ ᴀɢᴀɪɴ."
             )
         await add_active_chat(chat_id)
         await music_on(chat_id)
