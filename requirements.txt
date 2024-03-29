@@ -1,5 +1,5 @@
 aiofiles
-aiohttp==3.9.3
+aiohttp
 asyncio
 dnspython
 ffmpeg-python
@@ -7,10 +7,10 @@ gitpython
 hachoir
 heroku3
 lyricsgenius
-motor==3.0.0
-pillow==9.5.0
+motor
+pillow==6.2.2
 psutil
-py-tgcalls==1.2.9
+py-tgcalls
 pykeyboard
 pyrogram
 python-dotenv
@@ -23,6 +23,6 @@ youtube-search
 youtube-search-python
 yt-dlp
 numpy
-Flask==2.2.2
-gunicorn==20.1.0
+Flask
+gunicorn
 
