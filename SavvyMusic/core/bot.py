@@ -6,7 +6,7 @@ from ..logging import LOGGER
 from pyrogram.enums import ChatMemberStatus
 
 
-class SavvyBot(Client):
+class Savvy(Client):
     def __init__(self):
         LOGGER(__name__).info(f"Starting Bot...")
         super().__init__(
