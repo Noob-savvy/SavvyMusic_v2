@@ -37,10 +37,6 @@ def start_pannel(_):
             )
         return buttons
 
-
-from typing import Union
-from pyrogram.types import InlineKeyboardButton
-
 #private panel
 
 def private_panel(_):
