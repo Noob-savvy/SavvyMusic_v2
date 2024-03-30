@@ -18,7 +18,7 @@ PHOTO = [
 
 divu = [
     [   
-       InlineKeyboardButton(text="ꜱᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{config.SUPPORT_CHAT}"),
+       InlineKeyboardButton(text="ꜱᴜᴘᴘᴏʀᴛ", url=f"https://t.me/savvy_robot_support"),
     ],
     [
         InlineKeyboardButton(
