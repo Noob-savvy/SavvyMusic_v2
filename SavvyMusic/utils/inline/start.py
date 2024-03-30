@@ -41,6 +41,8 @@ def start_pannel(_):
 from typing import Union
 from pyrogram.types import InlineKeyboardButton
 
+#private panel
+
 def private_panel(_):
     buttons = [
         [
@@ -60,6 +62,5 @@ def private_panel(_):
         [
             InlineKeyboardButton(text=_["ST_B_6"], callback_data="LG")
         ],
-        ]
-       return buttons
-    
+    ]
+    return buttons
