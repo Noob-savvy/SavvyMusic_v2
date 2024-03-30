@@ -5,7 +5,7 @@ from pyrogram import __version__ as pver
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from SAVVY.PICS import SAVVY_PIC as PICS
-from SavvyMusic import SUPPORT_CHAT, app, OWNER_ID
+from SavvyMusic import app, OWNER_ID
 import config
 
 PHOTO = [
