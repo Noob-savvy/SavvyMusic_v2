@@ -1,4 +1,5 @@
 import asyncio
+import random
 from platform import python_version as pyver
 
 from pyrogram import __version__ as pver
