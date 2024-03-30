@@ -5,7 +5,7 @@ from pyrogram import __version__ as pver
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from SAVVY.PICS import SAVVY_PIC as PICS
-from SavvyMusic import app, OWNER_ID
+from SavvyMusic import app
 import config
 
 PHOTO = [
@@ -18,7 +18,7 @@ PHOTO = [
 
 divu = [
     [
-        InlineKeyboardButton(text="ᴏᴡɴᴇʀ", user_id=OWNER_ID),
+        InlineKeyboardButton(text="ᴏᴡɴᴇʀ", user_id={config.OWNER_ID}),
         InlineKeyboardButton(text="ꜱᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{config.SUPPORT_CHAT}"),
     ],
     [
@@ -53,7 +53,7 @@ async def restart(client, m: Message):
         random.choice(PICS),
         caption=f"""**ʜᴇʏ, ɪ ᴀᴍ 『[{config.MUSIC_BOT_NAME}](f"t.me/{app.username}")』**
    ━━━━━━━━━❀❀❀━━━━━━━━━━
-  ⌬ **ᴍʏ ᴏᴡɴᴇʀ :** [𝕯𝖎𝖛𝖞𝖆𝖓𝖘𝖍𝖚](tg://user?id={OWNER_ID})
+  ⌬ **ᴍʏ ᴏᴡɴᴇʀ :** [𝕯𝖎𝖛𝖞𝖆𝖓𝖘𝖍𝖚](tg://user?id={config.OWNER_ID})
   
   ⌬ **ᴘʏʀᴏɢʀᴀᴍ ᴠᴇʀsɪᴏɴ :** `{pver}`
   
