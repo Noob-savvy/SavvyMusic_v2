@@ -35,7 +35,7 @@ def start_pannel(_):
             buttons.append(
                 [InlineKeyboardButton(text=_["S_B_3"], url=f"{SUPPORT_GROUP}")]
             )
-    return buttons
+        return buttons
 
 
 from typing import Union
@@ -60,5 +60,6 @@ def private_panel(_):
         [
             InlineKeyboardButton(text=_["ST_B_6"], callback_data="LG")
         ],
-    ]
+        ]
+       return buttons
     
