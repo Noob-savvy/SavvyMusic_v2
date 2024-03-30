@@ -269,24 +269,6 @@ async def welcome(client, message: Message):
             return
 
 
-@app.on_message(commandpro(["/alive", "Savvy"]))
-async def alive(client, message: Message):
-    await message.reply_photo(
-        random.choice(SAVVY_PIC),
-        caption=f"""**HEY, I AM {config.MUSIC_BOT_NAME}**
-
-━━━━━━ ✿ ━━━━━━
-✪ **CREATOR:** [𝕯𝖎𝖛𝖞𝖆𝖓𝖘𝖍𝖚 𝕽𝖆𝖓𝖆](https://instagram.com/ranavanshi_divy)
-➲ **PYTHON:** 3.11
-➲ **BOT VERSION:** `2.0`
-➲ **SUPPORT GROUP:** [Support](https://t.me/savvy_robot_support)
-━━━━━━ ✿ ━━━━━━""",
-        reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("𝐒ᴀᴠᴠʏ 𝐒ᴜᴘᴘᴏʀᴛ ", url=f"https://t.me/savvy_robot_support")]]
-        ),
-    )
-
-
 @app.on_message(commandpro(["/verify", "savvyverification"]))
 async def verify(client, message: Message):
     if await is_served_user(message.from_user.id):
