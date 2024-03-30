@@ -6,7 +6,7 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from telegram import __version__ as lver
 from SAVVY.PICS import SAVVY_PIC as PICS
-from SavvyMusic import SUPPORT_CHAT, app, OWNER_ID,
+from SavvyMusic import SUPPORT_CHAT, app, OWNER_ID
 import config
 
 PHOTO = [
