@@ -180,21 +180,21 @@ async def start_comm(client, message: Message, _):
         if config.START_IMG_URL:
             try:
                 await message.reply_photo(
-                    photo=random.choice(SAVVY_PICS),
+                    photo=random.choice(SAVVY_PIC),
                     caption=_["start_2"].format(config.MUSIC_BOT_NAME),
-                    
+                    reply_markup=out,
                 )
             except:
                 await message.reply_photo(
-                    photo=random.choice(SAVVY_PICS),
+                    photo=random.choice(SAVVY_PIC),
                     caption=_["start_2"].format(config.MUSIC_BOT_NAME),  # Moved caption before the keyword argument
-                    
+                    reply_markup=out,
                 )
         else:
             await message.reply_photo(
-                photo=random.choice(SAVVY_PICS),
+                photo=random.choice(SAVVY_PIC),
                 caption=_["start_2"].format(config.MUSIC_BOT_NAME),  # Moved caption before the keyword argument
-                
+                reply_markup=out,
             )
         if await is_on_off(config.LOG):
             sender_id = message.from_user.id
