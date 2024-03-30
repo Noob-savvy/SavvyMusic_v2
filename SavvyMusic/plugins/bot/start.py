@@ -172,7 +172,7 @@ async def start_comm(client, message: Message, _):
                ) 
             
     
-    else:
+ else:
     try:
         await app.resolve_peer(OWNER_ID[0])
         OWNER = OWNER_ID[0]
