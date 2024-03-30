@@ -4,7 +4,6 @@ from platform import python_version as pyver
 from pyrogram import __version__ as pver
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
-from telegram import __version__ as lver
 from SAVVY.PICS import SAVVY_PIC as PICS
 from SavvyMusic import SUPPORT_CHAT, app, OWNER_ID
 import config
@@ -55,8 +54,6 @@ async def restart(client, m: Message):
         caption=f"""**ʜᴇʏ, ɪ ᴀᴍ 『[{config.MUSIC_BOT_NAME}](f"t.me/{app.username}")』**
    ━━━━━━━━━❀❀❀━━━━━━━━━━
   ⌬ **ᴍʏ ᴏᴡɴᴇʀ :** [𝕯𝖎𝖛𝖞𝖆𝖓𝖘𝖍𝖚](tg://user?id={OWNER_ID})
-  
-  ⌬ **ʟɪʙʀᴀʀʏ ᴠᴇʀsɪᴏɴ :** `{lver}`
   
   ⌬ **ᴘʏʀᴏɢʀᴀᴍ ᴠᴇʀsɪᴏɴ :** `{pver}`
   
