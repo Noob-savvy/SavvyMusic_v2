@@ -53,11 +53,11 @@ def private_panel(_):
         ],
         [InlineKeyboardButton(text=_["S_B_8"], callback_data="settings_back_helper")],
         [
-            InlineKeyboardButton(text=_["S_B_5"], user_id=config.OWNER_ID),
-            InlineKeyboardButton(text=_["S_B_3"], url=config.SUPPORT_GROUP),
+            InlineKeyboardButton(text=_["S_B_5"], user_id=f"{OWNER_ID}"),
+            InlineKeyboardButton(text=_["S_B_3"], url=f"{SUPPORT_GROUP}"),
         ],
         [
-            InlineKeyboardButton(text=_["S_B_4"], url=config.SUPPORT_CHANNEL),
+            InlineKeyboardButton(text=_["S_B_4"], url=f"{SUPPORT_CHANNEL}"),
         ],
         [
             InlineKeyboardButton(text=_["ST_B_6"], callback_data="LG")
