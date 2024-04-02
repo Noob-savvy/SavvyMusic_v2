@@ -1,6 +1,3 @@
-
-
-import random
 import asyncio
 import random
 from pyrogram import filters
@@ -31,6 +28,7 @@ from SavvyMusic.utils.decorators.language import LanguageStart
 from SavvyMusic.utils.inline import help_pannel, private_panel, start_pannel
 from SavvyMusic.utils.command import commandpro
 from SAVVY.PICS import SAVVY_PIC
+
 loop = asyncio.get_running_loop()
 
 
@@ -49,7 +47,7 @@ async def start_comm(client, message: Message, _):
             return await message.reply_text(_["song_2"])
         if name[0:3] == "sta":
             m = await message.reply_text(
-                "ɢᴇᴛᴛɪɴɢ ʏᴏᴜʀ ᴩᴇʀsᴏɴᴀʟ sᴛᴀᴛs ғʀᴏᴍ {config.MUSIC_BOT_NAME} sᴇʀᴠᴇʀ."
+                "🥱 ɢᴇᴛᴛɪɴɢ ʏᴏᴜʀ ᴩᴇʀsᴏɴᴀʟ sᴛᴀᴛs ғʀᴏᴍ {config.MUSIC_BOT_NAME} sᴇʀᴠᴇʀ."
             )
             stats = await get_userss(message.from_user.id)
             tot = len(stats)
@@ -85,7 +83,7 @@ async def start_comm(client, message: Message, _):
                     details = stats.get(vidid)
                     title = (details["title"][:35]).title()
                     if vidid == "telegram":
-                        msg += f"🔗[ᴛᴇʟᴇɢʀᴀᴍ ᴍᴇᴅɪᴀ](https://t.me/Savvy_robot_support) ** ᴩʟᴀʏᴇᴅ {count} ᴛɪᴍᴇs**\n\n"
+                        msg += f"🔗[ᴛᴇʟᴇɢʀᴀᴍ ᴍᴇᴅɪᴀ](https://t.me/Shayri_Music_Lovers) ** ᴩʟᴀʏᴇᴅ {count} ᴛɪᴍᴇs**\n\n"
                     else:
                         msg += f"🔗 [{title}](https://www.youtube.com/watch?v={vidid}) ** played {count} times**\n\n"
                 msg = _["ustats_2"].format(tot, tota, limit) + msg
@@ -135,7 +133,7 @@ async def start_comm(client, message: Message, _):
                 link = result["link"]
                 published = result["publishedTime"]
             searched_text = f"""
- **ᴛʀᴀᴄᴋ ɪɴғᴏʀɴᴀᴛɪᴏɴ**
+😲**ᴛʀᴀᴄᴋ ɪɴғᴏʀɴᴀᴛɪᴏɴ**😲
 
 📌**ᴛɪᴛʟᴇ:** {title}
 
@@ -169,7 +167,7 @@ async def start_comm(client, message: Message, _):
                 return await app.send_message(
                     config.LOG_GROUP_ID,
                     f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <code>ᴛʀᴀᴄᴋ ɪɴғᴏʀᴍᴀᴛɪᴏɴ</code>\n\n**ᴜsᴇʀ ɪᴅ:** {sender_id}\n**ᴜsᴇʀɴᴀᴍᴇ:** {sender_name}",
-               ) 
+                )
     else:
         try:
             await app.resolve_peer(OWNER_ID[0])
@@ -180,20 +178,18 @@ async def start_comm(client, message: Message, _):
         if config.START_IMG_URL:
             try:
                 await message.reply_photo(
-                    photo=random.choice(SAVVY_PIC),
+                    photo=random.choice(SAVVY_PIC)
                     caption=_["start_2"].format(config.MUSIC_BOT_NAME),
                     reply_markup=InlineKeyboardMarkup(out),
                 )
             except:
-                await message.reply_photo(
-                    photo=random.choice(SAVVY_PIC),
-                    caption=_["start_2"].format(config.MUSIC_BOT_NAME),  # Moved caption before the keyword argument
+                await message.reply_text(
+                    _["start_2"].format(config.MUSIC_BOT_NAME),
                     reply_markup=InlineKeyboardMarkup(out),
                 )
         else:
-            await message.reply_photo(
-                photo=random.choice(SAVVY_PIC),
-                caption=_["start_2"].format(config.MUSIC_BOT_NAME),  # Moved caption before the keyword argument
+            await message.reply_text(
+                _["start_2"].format(config.MUSIC_BOT_NAME),
                 reply_markup=InlineKeyboardMarkup(out),
             )
         if await is_on_off(config.LOG):
@@ -202,8 +198,8 @@ async def start_comm(client, message: Message, _):
             return await app.send_message(
                 config.LOG_GROUP_ID,
                 f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ʏᴏᴜʀ ʙᴏᴛ.\n\n**ᴜsᴇʀ ɪᴅ:** {sender_id}\n**ᴜsᴇʀɴᴀᴍᴇ:** {sender_name}",
-            ) 
-               
+            )
+
 
 @app.on_message(
     filters.command(get_command("START_COMMAND")) & filters.group & ~BANNED_USERS
@@ -211,9 +207,8 @@ async def start_comm(client, message: Message, _):
 @LanguageStart
 async def testbot(client, message: Message, _):
     out = start_pannel(_)
-    return await message.reply_photo(
-        random.choice(SAVVY_PIC),
-        caption=_["start_1"].format(message.chat.title, config.MUSIC_BOT_NAME),
+    return await message.reply_text(
+        _["start_1"].format(message.chat.title, config.MUSIC_BOT_NAME),
         reply_markup=InlineKeyboardMarkup(out),
     )
 
@@ -269,8 +264,7 @@ async def welcome(client, message: Message):
             return
         except:
             return
-
-
+            
 @app.on_message(commandpro(["/verify", "savvyverification"]))
 async def verify(client, message: Message):
     if await is_served_user(message.from_user.id):
@@ -283,6 +277,6 @@ async def verify(client, message: Message):
         random.choice(SAVVY_PIC),
         caption=f"""━━━━━━━━━━━━━━━━━━━━━━━━\n\n✪ **ᴄᴏɴɢʀᴀᴛᴜʟᴀᴛɪᴏɴ** 🎉\n✪ ɴᴏᴡ ʏᴏᴜ ᴀʀᴇ ᴠᴇʀɪғɪᴇᴅ ᴍᴇᴍʙᴇʀ ɢᴏ ʙᴀᴄᴋ ᴀɴᴅ ᴇɴᴊᴏʏ ᴏᴜʀ sᴇʀᴠɪᴄᴇ ᴀɴᴅ ᴘʟᴀʏ ᴍᴜsɪᴄ  ..\n\n━━━━━━━━━━━━━━━━━━━━━━━━""",
         reply_markup=InlineKeyboardMarkup(
-            [[InlineKeyboardButton("𝐒ᴀᴠᴠʏ 𝐒ᴜᴘᴘᴏʀᴛ", url=f"https://t.me/savvy_robot_support")]]
+            [[InlineKeyboardButton("๏ sᴜᴘᴘᴏʀᴛ ๏", url=f"https://t.me/savvy_robot_support")]]
         ),
-    )
+    )            
