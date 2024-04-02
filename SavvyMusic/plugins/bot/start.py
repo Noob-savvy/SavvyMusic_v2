@@ -178,7 +178,7 @@ async def start_comm(client, message: Message, _):
         if config.START_IMG_URL:
             try:
                 await message.reply_photo(
-                    photo=random.choice(SAVVY_PIC)
+                    photo=random.choice(SAVVY_PIC),
                     caption=_["start_2"].format(config.MUSIC_BOT_NAME),
                     reply_markup=InlineKeyboardMarkup(out),
                 )
