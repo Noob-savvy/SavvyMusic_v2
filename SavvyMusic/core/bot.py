@@ -8,14 +8,15 @@ from pyrogram.enums import ChatMemberStatus
 
 class Savvy(Client):
     def __init__(self):
-        LOGGER(__name__).info(f"Starting Bot...")
         super().__init__(
             "MusicBot",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             bot_token=config.BOT_TOKEN,
+            in_memory=True
         )
-
+        LOGGER(__name__).info(f"Starting Bot...")
+        
     async def start(self):
         await super().start()
         get_me = await self.get_me()
