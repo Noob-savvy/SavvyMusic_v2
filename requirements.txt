@@ -5,12 +5,13 @@ dnspython
 ffmpeg-python
 gitpython
 hachoir
+httpx
 heroku3
 lyricsgenius
 motor
 pillow==6.2.2
 psutil
-py-tgcalls
+py-tgcalls==2.1.0
 pykeyboard
 pyrogram
 python-dotenv
