@@ -1,3 +1,4 @@
+
 import asyncio
 from datetime import datetime, timedelta
 from typing import Union
@@ -9,17 +10,18 @@ from pyrogram.errors import (
     UserNotParticipant,
 )
 from pyrogram.types import InlineKeyboardMarkup
-from pytgcalls import PyTgCalls, StreamType
-from pytgcalls.exceptions import (
-    AlreadyJoinedError,
-    NoActiveGroupCall,
+from pytgcalls import PyTgCalls
+from ntgcalls import TelegramServerError
+from pytgcalls.exceptions import AlreadyJoinedError, NoActiveGroupCall
+from pytgcalls.types import (
+    JoinedGroupCallParticipant,
+    LeftGroupCallParticipant,
+    MediaStream,
+    Update,
 )
-from pytgcalls.types import JoinedGroupCallParticipant, LeftGroupCallParticipant, Update
-from pytgcalls.types import MediaStream
 from pytgcalls.types.stream import StreamAudioEnded
 
 import config
-from strings import get_string
 from SavvyMusic import LOGGER, YouTube, app
 from SavvyMusic.misc import db
 from SavvyMusic.utils.database import (
@@ -33,7 +35,6 @@ from SavvyMusic.utils.database import (
     group_assistant,
     is_autoend,
     music_on,
-    mute_off,
     remove_active_chat,
     remove_active_video_chat,
     set_loop,
@@ -43,7 +44,7 @@ from SavvyMusic.utils.inline.play import stream_markup, telegram_markup
 from SavvyMusic.utils.stream.autoclear import auto_clean
 from SavvyMusic.utils.thumbnails import gen_thumb
 from SavvyMusic.utils.theme import check_theme
-
+from strings import get_string
 
 autoend = {}
 counter = {}
@@ -164,7 +165,11 @@ class Call(PyTgCalls):
                     video_parameters=video_stream_quality,
                 )
             else:
-                stream = MediaStreamp(link, audio_parameters=audio_stream_quality)
+                stream = MediaStream(
+                    link,
+                    audio_parameters=audio_stream_quality,
+                    video_flags=MediaStream.IGNORE,
+                )
         await assistant.change_stream(
             chat_id,
             stream,
@@ -179,13 +184,14 @@ class Call(PyTgCalls):
                 file_path,
                 audio_parameters=audio_stream_quality,
                 video_parameters=video_stream_quality,
-                additional_ffmpeg_parameters=f"-ss {to_seek} -to {duration}",
+                ffmpeg_parameters=f"-ss {to_seek} -to {duration}",
             )
             if mode == "video"
             else MediaStream(
                 file_path,
                 audio_parameters=audio_stream_quality,
-                additional_ffmpeg_parameters=f"-ss {to_seek} -to {duration}",
+                ffmpeg_parameters=f"-ss {to_seek} -to {duration}",
+                video_flags=MediaStream.IGNORE,
             )
         )
         await assistant.change_stream(chat_id, stream)
@@ -199,7 +205,10 @@ class Call(PyTgCalls):
                 get = await app.get_chat_member(chat_id, userbot.id)
             except ChatAdminRequired:
                 raise AssistantErr(_["call_1"])
-            if get.status == "banned" or get.status == "kicked":
+            if (
+                get.status == ChatMemberStatus.BANNED
+                or get.status == ChatMemberStatus.RESTRICTED
+            ):
                 try:
                     await app.unban_chat_member(chat_id, userbot.id)
                 except:
@@ -281,13 +290,16 @@ class Call(PyTgCalls):
                         video_parameters=video_stream_quality,
                     )
                     if video
-                    else MediaStream(link, audio_parameters=audio_stream_quality)
+                    else MediaStream(
+                        link,
+                        audio_parameters=audio_stream_quality,
+                        video_flags=MediaStream.IGNORE,
+                    )
                 )
         try:
             await assistant.join_group_call(
                 chat_id,
                 stream,
-                stream_type=StreamType().pulse_stream,
             )
         except NoActiveGroupCall:
             try:
@@ -298,7 +310,6 @@ class Call(PyTgCalls):
                 await assistant.join_group_call(
                     chat_id,
                     stream,
-                    stream_type=StreamType().pulse_stream,
                 )
             except Exception as e:
                 raise AssistantErr(
@@ -307,6 +318,10 @@ class Call(PyTgCalls):
         except AlreadyJoinedError:
             raise AssistantErr(
                 "**ᴀssɪsᴛᴀɴᴛ ᴀʟʀᴇᴀᴅʏ ɪɴ ᴠɪᴅᴇᴏᴄʜᴀᴛ**\n\nᴍᴜsɪᴄ ʙᴏᴛ sʏsᴛᴇᴍs ᴅᴇᴛᴇᴄᴛᴇᴅ ᴛʜᴀᴛ ᴀssɪᴛᴀɴᴛ ɪs ᴀʟʀᴇᴀᴅʏ ɪɴ ᴛʜᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛ, ɪғ ᴛʜɪs ᴩʀᴏʙʟᴇᴍ ᴄᴏɴᴛɪɴᴜᴇs ʀᴇsᴛᴀʀᴛ ᴛʜᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛ ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ."
+            )
+        except TelegramServerError:
+            raise AssistantErr(
+                "**ᴛᴇʟᴇɢʀᴀᴍ sᴇʀᴠᴇʀ ᴇʀʀᴏʀ**\n\nᴩʟᴇᴀsᴇ ᴛᴜʀɴ ᴏғғ ᴀɴᴅ ʀᴇsᴛᴀʀᴛ ᴛʜᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛ ᴀɢᴀɪɴ."
             )
         await add_active_chat(chat_id)
         await music_on(chat_id)
@@ -351,7 +366,7 @@ class Call(PyTgCalls):
             audio_stream_quality = await get_audio_bitrate(chat_id)
             video_stream_quality = await get_video_bitrate(chat_id)
             videoid = check[0]["vidid"]
-            user_id = check[0].get("user_id")
+            userid = check[0].get("user_id")
             check[0]["played"] = 0
             video = True if str(streamtype) == "video" else False
             if "live_" in queued:
@@ -383,6 +398,7 @@ class Call(PyTgCalls):
                         stream = MediaStream(
                             link,
                             audio_parameters=audio_stream_quality,
+                            video_flags=MediaStream.IGNORE,
                         )
                 try:
                     await client.change_stream(chat_id, stream)
@@ -392,7 +408,7 @@ class Call(PyTgCalls):
                         text=_["call_9"],
                     )
                 theme = await check_theme(chat_id)
-                img = await gen_thumb(videoid, user_id, theme)
+                img = await gen_thumb(videoid, userid, theme)
                 button = telegram_markup(_, chat_id)
                 run = await app.send_photo(
                     original_chat_id,
@@ -442,6 +458,7 @@ class Call(PyTgCalls):
                         stream = MediaStream(
                             file_path,
                             audio_parameters=audio_stream_quality,
+                            video_flags=MediaStream.IGNORE,
                         )
                 try:
                     await client.change_stream(chat_id, stream)
@@ -451,7 +468,7 @@ class Call(PyTgCalls):
                         text=_["call_9"],
                     )
                 theme = await check_theme(chat_id)
-                img = await gen_thumb(videoid, user_id, theme)
+                img = await gen_thumb(videoid, userid, theme)
                 button = stream_markup(_, videoid, chat_id)
                 await mystic.delete()
                 run = await app.send_photo(
@@ -475,7 +492,11 @@ class Call(PyTgCalls):
                         video_parameters=video_stream_quality,
                     )
                     if str(streamtype) == "video"
-                    else MediaStream(videoid, audio_parameters=audio_stream_quality)
+                    else MediaStream(
+                        videoid,
+                        audio_parameters=audio_stream_quality,
+                        video_flags=MediaStream.IGNORE,
+                    )
                 )
                 try:
                     await client.change_stream(chat_id, stream)
@@ -521,6 +542,7 @@ class Call(PyTgCalls):
                         stream = MediaStream(
                             queued,
                             audio_parameters=audio_stream_quality,
+                            video_flags=MediaStream.IGNORE,
                         )
                 try:
                     await client.change_stream(chat_id, stream)
@@ -533,9 +555,11 @@ class Call(PyTgCalls):
                     button = telegram_markup(_, chat_id)
                     run = await app.send_photo(
                         original_chat_id,
-                        photo=config.TELEGRAM_AUDIO_URL
-                        if str(streamtype) == "audio"
-                        else config.TELEGRAM_VIDEO_URL,
+                        photo=(
+                            config.TELEGRAM_AUDIO_URL
+                            if str(streamtype) == "audio"
+                            else config.TELEGRAM_VIDEO_URL
+                        ),
                         caption=_["stream_3"].format(title, check[0]["dur"], user),
                         reply_markup=InlineKeyboardMarkup(button),
                     )
@@ -553,7 +577,7 @@ class Call(PyTgCalls):
                     db[chat_id][0]["markup"] = "tg"
                 else:
                     theme = await check_theme(chat_id)
-                    img = await gen_thumb(videoid, user_id, theme)
+                    img = await gen_thumb(videoid, userid, theme)
                     button = stream_markup(_, videoid, chat_id)
                     run = await app.send_photo(
                         original_chat_id,
@@ -584,7 +608,7 @@ class Call(PyTgCalls):
         return str(round(sum(pings) / len(pings), 3))
 
     async def start(self):
-        LOGGER(__name__).info("Starting Assistants...\n")
+        LOGGER(__name__).info("Starting PyTgCalls Client\n")
         if config.STRING1:
             await self.one.start()
         if config.STRING2:
@@ -620,7 +644,7 @@ class Call(PyTgCalls):
         @self.three.on_stream_end()
         @self.four.on_stream_end()
         @self.five.on_stream_end()
-        async def stream_end_handler1(client, update: Update):
+        async def stream_end_handler(client, update: Update):
             if not isinstance(update, StreamAudioEnded):
                 return
             await self.change_stream(client, update.chat_id)
