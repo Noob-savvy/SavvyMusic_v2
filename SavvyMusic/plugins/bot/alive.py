@@ -19,7 +19,7 @@ PHOTO = [
 
 divu = [
     [   
-       InlineKeyboardButton(text="ꜱᴜᴘᴘᴏʀᴛ", url=f"https://t.me/savvy_robot_support"),
+       InlineKeyboardButton(text="๏ 𝐒ᴜᴘᴘᴏʀᴛ ๏", url=f"https://t.me/savvy_robot_support"),
     ],
     [
         InlineKeyboardButton(
@@ -59,7 +59,7 @@ async def restart(client, m: Message):
   
   ⌬ **ᴘʏᴛʜᴏɴ ᴠᴇʀsɪᴏɴ :** `{pyver()}`
    
-  ⌬ **BOT VERSION:** `2.0`
+  ⌬ **ʙᴏᴛ ᴠᴇʀsɪᴏɴ:** `2.0`
     
   ⌬ **sᴜᴘᴘʀᴏᴛ ɢʀᴏᴜᴘ:** [sᴜᴘᴘᴏʀᴛ](https://t.me/savvy_robot_support)
    ━━━━━━━━━❀❀❀━━━━━━━━━━""",
