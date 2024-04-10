@@ -77,7 +77,7 @@ async def del_back_playlist(client, CallbackQuery, _):
         return
     if chat_id not in wrong:
         wrong[chat_id] = {}
-    wrong[chat_id][CallbackQuery.message.message_id] = True
+    wrong[chat_id][CallbackQuery.message.id] = True
 
 
 downvote = {}
