@@ -54,7 +54,7 @@ async def markup_panel(client, CallbackQuery: CallbackQuery, _):
         return
     if chat_id not in wrong:
         wrong[chat_id] = {}
-    wrong[chat_id][CallbackQuery.message.message_id] = False
+    wrong[chat_id][CallbackQuery.message.id] = False
 
 
 @app.on_callback_query(filters.regex("MainMarkup") & ~BANNED_USERS)
