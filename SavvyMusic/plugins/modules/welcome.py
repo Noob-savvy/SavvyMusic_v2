@@ -19,7 +19,7 @@ from pyrogram.enums import ParseMode
 from pyrogram import *
 from pyrogram.types import *
 from logging import getLogger
-from SavvyMusic.utils.jarvis_ban import admin_filter
+from SavvyMusic.utils.Savvy_ban import admin_filter
 import os
 from PIL import ImageDraw, Image, ImageFont, ImageChops
 from pyrogram import *
@@ -71,8 +71,8 @@ def welcomepic(pic, user, chatname, id, uname):
     pfp = circle(pfp)
     pfp = pfp.resize((889, 873))
     draw = ImageDraw.Draw(background)
-    font = ImageFont.truetype('ANNIEMUSIC/assets/annie/anniewel.ttf', size=105)
-    welcome_font = ImageFont.truetype('ANNIEMUSIC/assets/annie/anniewel.ttf', size=55)
+    font = ImageFont.truetype('assets/', size=105)
+    welcome_font = ImageFont.truetype('assets/', size=55)
     draw.text((1844, 1043), f': {user}', fill=(238, 130, 238), font=font)
     draw.text((1542, 1263), f': {id}', fill=(238, 130, 238), font=font)
     draw.text((1920, 1502), f": {uname}", fill=(238, 130, 238), font=font)
