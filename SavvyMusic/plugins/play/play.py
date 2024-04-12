@@ -9,7 +9,7 @@ from pyrogram.types import InlineKeyboardMarkup, InputMediaPhoto, Message
 from pytgcalls.exceptions import NoActiveGroupCall
 
 import config
-from SavvyMusic import Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app
+from SavvyMusic import Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app as bot
 from SavvyMusic.core.call import Savvy
 from SavvyMusic.utils import seconds_to_min, time_to_seconds
 from SavvyMusic.utils.channelplay import get_channeplayCB
