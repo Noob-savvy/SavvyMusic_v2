@@ -118,6 +118,15 @@ async def start_comm(client, message: Message, _):
                 return await message.reply_text("ғᴀɪʟᴇᴅ ᴛᴏ ɢᴇᴛ ʟʏʀɪᴄs.")
         if name[0:3] == "del":
             await del_plist_msg(client=client, message=message, _=_)
+        if name == "verify":
+            await message.reply_text(f"ʜᴇʏ {message.from_user.first_name},\nᴛʜᴀɴᴋs ғᴏʀ ᴠᴇʀɪғʏɪɴɢ ʏᴏᴜʀsᴇʟғ ɪɴ {config.MUSIC_BOT_NAME}, ɴᴏᴡ ʏᴏᴜ ᴄᴀɴ ɢᴏ ʙᴀᴄᴋ ᴀɴᴅ sᴛᴀʀᴛ ᴜsɪɴɢ ᴍᴇ.")
+            if await is_on_off(config.LOG):
+                sender_id = message.from_user.id
+                sender_name = message.from_user.first_name
+                return await bot.send_message(
+                    config.LOG_GROUP_ID,
+                    f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ <code>ᴠᴇʀɪғʏ ʜɪᴍsᴇʟғ</code>\n\n**ᴜsᴇʀ ɪᴅ:** {sender_id}\n**ᴜsᴇʀɴᴀᴍᴇ:** {sender_name}",
+                )   
         if name[0:3] == "inf":
             m = await message.reply_text("🔎")
             query = (str(name)).replace("info_", "", 1)
@@ -170,16 +179,18 @@ async def start_comm(client, message: Message, _):
                 )
     else:
         try:
-            await app.resolve_peer(OWNER_ID[0])
+            await bot.resolve_peer(OWNER_ID[0])
             OWNER = OWNER_ID[0]
         except:
             OWNER = None
-        out = private_panel(_, app.username, OWNER)
+        out = private_panel(_, bot.username, OWNER)
         if config.START_IMG_URL:
             try:
                 await message.reply_photo(
-                    photo=random.choice(SAVVY_PIC),
-                    caption=_["start_2"].format(config.MUSIC_BOT_NAME),
+                    photo=config.START_IMG_URL,
+                    caption=_["start_2"].format(
+                        config.MUSIC_BOT_NAME
+                    ),
                     reply_markup=InlineKeyboardMarkup(out),
                 )
             except:
@@ -195,12 +206,10 @@ async def start_comm(client, message: Message, _):
         if await is_on_off(config.LOG):
             sender_id = message.from_user.id
             sender_name = message.from_user.first_name
-            return await app.send_message(
+            return await bot.send_message(
                 config.LOG_GROUP_ID,
                 f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ʏᴏᴜʀ ʙᴏᴛ.\n\n**ᴜsᴇʀ ɪᴅ:** {sender_id}\n**ᴜsᴇʀɴᴀᴍᴇ:** {sender_name}",
             )
-
-
 @app.on_message(
     filters.command(get_command("START_COMMAND")) & filters.group & ~BANNED_USERS
 )
