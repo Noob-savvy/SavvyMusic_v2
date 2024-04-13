@@ -123,7 +123,7 @@ async def start_comm(client, message: Message, _):
             if await is_on_off(config.LOG):
                 sender_id = message.from_user.id
                 sender_name = message.from_user.first_name
-                return await bot.send_message(
+                return await app.send_message(
                     config.LOG_GROUP_ID,
                     f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ ᴛᴏ <code>ᴠᴇʀɪғʏ ʜɪᴍsᴇʟғ</code>\n\n**ᴜsᴇʀ ɪᴅ:** {sender_id}\n**ᴜsᴇʀɴᴀᴍᴇ:** {sender_name}",
                 )   
