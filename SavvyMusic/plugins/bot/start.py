@@ -179,15 +179,15 @@ async def start_comm(client, message: Message, _):
                 )
     else:
         try:
-            await bot.resolve_peer(OWNER_ID[0])
+            await app.resolve_peer(OWNER_ID[0])
             OWNER = OWNER_ID[0]
         except:
             OWNER = None
-        out = private_panel(_, bot.username, OWNER)
+        out = private_panel(_, app.username, OWNER)
         if config.START_IMG_URL:
             try:
                 await message.reply_photo(
-                    photo=config.START_IMG_URL,
+                    photo=random.choice(SAVVY_PIC),
                     caption=_["start_2"].format(
                         config.MUSIC_BOT_NAME
                     ),
@@ -206,7 +206,7 @@ async def start_comm(client, message: Message, _):
         if await is_on_off(config.LOG):
             sender_id = message.from_user.id
             sender_name = message.from_user.first_name
-            return await bot.send_message(
+            return await app.send_message(
                 config.LOG_GROUP_ID,
                 f"{message.from_user.mention} ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ʏᴏᴜʀ ʙᴏᴛ.\n\n**ᴜsᴇʀ ɪᴅ:** {sender_id}\n**ᴜsᴇʀɴᴀᴍᴇ:** {sender_name}",
             )
