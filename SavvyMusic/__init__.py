@@ -1,6 +1,7 @@
-#github https://github.com/Noob-savvy
-#copyrighted 
-from SavvyMusic.core.bot import Savvy
+
+
+
+from SavvyMusic.core.bot import SavvyBot
 from SavvyMusic.core.dir import dirr
 from SavvyMusic.core.git import git
 from SavvyMusic.core.userbot import Userbot
@@ -24,7 +25,7 @@ heroku()
 sudo()
 
 # Bot Client
-app = Savvy()
+app = SavvyBot()
 
 # Assistant Client
 userbot = Userbot()
