@@ -18,8 +18,10 @@ PHOTO = [
 ]
 
 divu = [
-    [   
-       InlineKeyboardButton(text="๏ 𝐒ᴜᴘᴘᴏʀᴛ ๏", url=f"https://t.me/savvy_robot_support"),
+    [
+        InlineKeyboardButton(
+            text="๏ 𝐒ᴜᴘᴘᴏʀᴛ ๏", url=f"https://t.me/savvy_robot_support"
+        ),
     ],
     [
         InlineKeyboardButton(
@@ -28,7 +30,6 @@ divu = [
         ),
     ],
 ]
-
 
 
 @app.on_message(filters.command("alive"))

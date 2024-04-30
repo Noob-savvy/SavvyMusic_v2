@@ -1,4 +1,3 @@
-
 from SavvyMusic import app
 from pyrogram import filters
 from config import BANNED_USERS

@@ -1,6 +1,3 @@
-
-
-
 import config
 from config import PRIVATE_BOT_MODE
 from SavvyMusic.core.mongo import mongodb

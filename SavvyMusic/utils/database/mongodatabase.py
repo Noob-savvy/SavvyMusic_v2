@@ -1,4 +1,3 @@
-
 from typing import Dict, List, Union
 
 from SavvyMusic.core.mongo import mongodb

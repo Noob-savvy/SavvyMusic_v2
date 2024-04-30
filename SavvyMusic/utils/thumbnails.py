@@ -1,4 +1,3 @@
-
 import os
 import re
 import textwrap
@@ -294,9 +293,7 @@ async def gen_qthumb(videoid, user_id, theme):
                 fill="red",
                 font=font,
             )
-            text_w, text_h = draw.textsize(
-                f"SAVVY ROBOT ", font=arial
-            )
+            text_w, text_h = draw.textsize(f"SAVVY ROBOT ", font=arial)
             draw.text(
                 ((1280 - text_w) / 2, 80),
                 f"SAVVY ROBOT",

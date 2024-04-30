@@ -1,6 +1,3 @@
-
-
-
 from pyrogram import filters
 
 import config
