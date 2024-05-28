@@ -19,7 +19,7 @@ requests
 speedtest-cli
 spotipy
 tgcrypto
-yt-dlp==2023.10.13
+yt-dlp==2024.5.27
 asyncio
 pyrogram
 youtube-search
