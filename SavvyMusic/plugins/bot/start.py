@@ -181,8 +181,8 @@ async def start_comm(client, message: Message, _):
                 )
     else:
         try:
-            await app.resolve_peer(6810304102)
-            OWNER = 6810304102
+            await app.resolve_peer(OWNER_ID[0])
+            OWNER = OWNER_ID[0]
         except:
             OWNER = None
         out = private_panel(_, app.username, OWNER)
