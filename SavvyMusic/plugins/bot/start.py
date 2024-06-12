@@ -15,6 +15,8 @@ from SavvyMusic.plugins.play.playlist import del_plist_msg
 from SavvyMusic.plugins.sudo.sudoers import sudoers_list
 from SavvyMusic.utils.database import (
     add_served_chat,
+    get_served_chats,
+    get_served_users,
     is_served_user,
     add_served_user,
     blacklisted_chats,
