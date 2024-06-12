@@ -28,7 +28,7 @@ from SavvyMusic.utils.decorators.language import LanguageStart
 from SavvyMusic.utils.inline import help_pannel, private_panel, start_pannel
 from SavvyMusic.utils.command import commandpro
 from SAVVY.PICS import SAVVY_PIC
-
+from SAVVY.TXT import PM_START_TEXT
 loop = asyncio.get_running_loop()
 
 
@@ -184,9 +184,11 @@ async def start_comm(client, message: Message, _):
         except:
             OWNER = None
         out = private_panel(_, app.username, OWNER)
-        await message.reply_video(
-            video="https://telegra.ph//file/5374701ae0678848e9631.mp4",
-            caption=_["start_2"].format(config.MUSIC_BOT_NAME),
+        served_chats = len(await get_served_chats())
+        served_users = len(await get_served_users())
+        await message.reply_photo(
+            random.choice(SAVVY_PIC),
+            caption=PM_START_TEXT.format(message.from_user.mention, config.MUSIC_BOT_NAME, served_users, served_chats),
             reply_markup=InlineKeyboardMarkup(out),
         )
         if await is_on_off(config.LOG):
