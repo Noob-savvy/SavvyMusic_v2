@@ -25,6 +25,9 @@ from PIL import ImageDraw, Image, ImageFont, ImageChops
 from pyrogram import *
 from pyrogram.types import *
 from logging import getLogger
+import pyrogram.utils
+
+pyrogram.utils.MIN_CHANNEL_ID = channalid
 
 LOGGER = getLogger(__name__)
 
