@@ -44,7 +44,7 @@ from SavvyMusic.utils.exceptions import AssistantErr
 from SavvyMusic.utils.inline.play import stream_markup, telegram_markup
 from SavvyMusic.utils.stream.autoclear import auto_clean
 from SavvyMusic.utils.thumbnails import gen_thumb
-from SavvyMusic.utils.theme import check_theme
+
 from strings import get_string
 
 autoend = {}
@@ -408,8 +408,8 @@ class Call(PyTgCalls):
                         original_chat_id,
                         text=_["call_9"],
                     )
-                theme = await check_theme(chat_id)
-                img = await gen_thumb(videoid, userid, theme)
+                
+                img = await gen_thumb(videoid, userid)
                 button = telegram_markup(_, chat_id)
                 run = await app.send_photo(
                     original_chat_id,
@@ -468,8 +468,8 @@ class Call(PyTgCalls):
                         original_chat_id,
                         text=_["call_9"],
                     )
-                theme = await check_theme(chat_id)
-                img = await gen_thumb(videoid, userid, theme)
+                
+                img = await gen_thumb(videoid, userid)
                 button = stream_markup(_, videoid, chat_id)
                 await mystic.delete()
                 run = await app.send_photo(
@@ -577,8 +577,8 @@ class Call(PyTgCalls):
                     db[chat_id][0]["mystic"] = run
                     db[chat_id][0]["markup"] = "tg"
                 else:
-                    theme = await check_theme(chat_id)
-                    img = await gen_thumb(videoid, userid, theme)
+                    
+                    img = await gen_thumb(videoid, userid)
                     button = stream_markup(_, videoid, chat_id)
                     run = await app.send_photo(
                         original_chat_id,
