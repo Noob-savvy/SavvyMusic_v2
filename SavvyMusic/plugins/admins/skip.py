@@ -13,7 +13,7 @@ from SavvyMusic.utils.decorators import AdminRightsCheck
 from SavvyMusic.utils.inline.play import stream_markup, telegram_markup
 from SavvyMusic.utils.stream.autoclear import auto_clean
 from SavvyMusic.utils.thumbnails import gen_thumb
-from SavvyMusic.utils.theme import check_theme
+
 
 # Commands
 SKIP_COMMAND = get_command("SKIP_COMMAND")
@@ -135,7 +135,7 @@ async def skip(cli, message: Message, _, chat_id):
             await Savvy.skip_stream(chat_id, file_path, video=status)
         except Exception:
             return await mystic.edit_text(_["call_9"])
-        theme = await check_theme(chat_id)
+        
         button = stream_markup(_, videoid, chat_id)
         img = await gen_thumb(videoid, user_id)
         run = await message.reply_photo(
@@ -192,7 +192,7 @@ async def skip(cli, message: Message, _, chat_id):
             db[chat_id][0]["mystic"] = run
             db[chat_id][0]["markup"] = "tg"
         else:
-            theme = await check_theme(chat_id)
+            
             button = stream_markup(_, videoid, chat_id)
             img = await gen_thumb(videoid, user_id)
             run = await message.reply_photo(
