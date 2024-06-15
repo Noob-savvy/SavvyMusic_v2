@@ -213,8 +213,7 @@ async def gen_qthumb(videoid, user_id):
                     f = await aiofiles.open(f"cache/thumb{videoid}.png", mode="wb")
                     await f.write(await resp.read())
                     await f.close()
-
-         try:
+        try:
             wxy = await app.download_media(
                 (await app.get_users(user_id)).photo.big_file_id,
                 file_name=f"{user_id}.jpg",
