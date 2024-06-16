@@ -1,4 +1,3 @@
-
 from config import LOG, LOG_GROUP_ID, MUSIC_BOT_NAME
 from SavvyMusic.utils.database import is_on_off
 from SavvyMusic import app

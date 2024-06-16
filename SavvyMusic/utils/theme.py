@@ -1,5 +1,3 @@
-
-
 import random
 from SavvyMusic.utils.database import get_theme
 

@@ -1,5 +1,3 @@
-
-
 import asyncio
 from pyrogram.enums import ChatType
 import config
