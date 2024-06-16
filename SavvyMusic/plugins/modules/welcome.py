@@ -28,6 +28,7 @@ from logging import getLogger
 
 LOGGER = getLogger(__name__)
 
+
 class WelDatabase:
     def __init__(self):
         self.data = {}
@@ -42,7 +43,9 @@ class WelDatabase:
         if chat_id in self.data:
             del self.data[chat_id]
 
+
 wlcm = WelDatabase()
+
 
 class temp:
     ME = None
@@ -51,7 +54,6 @@ class temp:
     MELCOW = {}
     U_NAME = None
     B_NAME = None
-
 
 
 def circle(pfp, size=(500, 500)):
@@ -65,21 +67,23 @@ def circle(pfp, size=(500, 500)):
     pfp.putalpha(mask)
     return pfp
 
+
 def welcomepic(pic, user, chatname, id, uname):
     background = Image.open("assets/wel1.png")
     pfp = Image.open(pic).convert("RGBA")
     pfp = circle(pfp)
     pfp = pfp.resize((889, 873))
     draw = ImageDraw.Draw(background)
-    font = ImageFont.truetype('assets/hiroko.ttf', size=105)
-    welcome_font = ImageFont.truetype('assets/hiroko.ttf', size=55)
-    draw.text((1844, 1043), f'Name: {user}', fill=(238, 130, 238), font=font)
-    draw.text((1542, 1263), f'User id: {id}', fill=(238, 130, 238), font=font)
+    font = ImageFont.truetype("assets/hiroko.ttf", size=105)
+    welcome_font = ImageFont.truetype("assets/hiroko.ttf", size=55)
+    draw.text((1844, 1043), f"Name: {user}", fill=(238, 130, 238), font=font)
+    draw.text((1542, 1263), f"User id: {id}", fill=(238, 130, 238), font=font)
     draw.text((1920, 1502), f"Username: {uname}", fill=(238, 130, 238), font=font)
     pfp_position = (255, 330)
     background.paste(pfp, pfp_position, pfp)
     background.save(f"downloads/welcome#{id}.png")
     return f"downloads/welcome#{id}.png"
+
 
 @app.on_message(filters.command("wel") & ~filters.private)
 async def auto_state(_, message):
@@ -99,18 +103,21 @@ async def auto_state(_, message):
                 await message.reply_text("**ᴡᴇʟᴄᴏᴍᴇ ɴᴏᴛɪғɪᴄᴀᴛɪᴏɴ ᴀʟʀᴇᴀᴅʏ ᴅɪsᴀʙʟᴇᴅ !**")
             else:
                 await wlcm.add_wlcm(chat_id)
-                await message.reply_text(f"**ᴅɪsᴀʙʟᴇᴅ ᴡᴇʟᴄᴏᴍᴇ ɴᴏᴛɪғɪᴄᴀᴛɪᴏɴ ɪɴ** {message.chat.title}")
+                await message.reply_text(
+                    f"**ᴅɪsᴀʙʟᴇᴅ ᴡᴇʟᴄᴏᴍᴇ ɴᴏᴛɪғɪᴄᴀᴛɪᴏɴ ɪɴ** {message.chat.title}"
+                )
         elif state == "on":
             if not A:
                 await message.reply_text("**ᴇɴᴀʙʟᴇ ᴡᴇʟᴄᴏᴍᴇ ɴᴏᴛɪғɪᴄᴀᴛɪᴏɴ.**")
             else:
                 await wlcm.rm_wlcm(chat_id)
-                await message.reply_text(f"**ᴇɴᴀʙʟᴇᴅ ᴡᴇʟᴄᴏᴍᴇ ɴᴏᴛɪғɪᴄᴀᴛɪᴏɴ ɪɴ ** {message.chat.title}")
+                await message.reply_text(
+                    f"**ᴇɴᴀʙʟᴇᴅ ᴡᴇʟᴄᴏᴍᴇ ɴᴏᴛɪғɪᴄᴀᴛɪᴏɴ ɪɴ ** {message.chat.title}"
+                )
         else:
             await message.reply_text(usage)
     else:
         await message.reply("**sᴏʀʀʏ ᴏɴʟʏ ᴀᴅᴍɪɴs ᴄᴀɴ ᴇɴᴀʙʟᴇ ᴡᴇʟᴄᴏᴍᴇ ɴᴏᴛɪғɪᴄᴀᴛɪᴏɴ!**")
-
 
 
 @app.on_chat_member_updated(filters.group, group=-3)
@@ -122,10 +129,14 @@ async def greet_new_member(_, member: ChatMemberUpdated):
         return
 
     user = member.new_chat_member.user if member.new_chat_member else member.from_user
-    
+
     # Add the modified condition here
-    if member.new_chat_member and not member.old_chat_member and member.new_chat_member.status != "kicked":
-    
+    if (
+        member.new_chat_member
+        and not member.old_chat_member
+        and member.new_chat_member.status != "kicked"
+    ):
+
         try:
             pic = await app.download_media(
                 user.photo.big_file_id, file_name=f"pp{user.id}.png"
@@ -161,14 +172,12 @@ async def greet_new_member(_, member: ChatMemberUpdated):
 ┗━━━━━━━━━━━━━━━━━━━━━━━━┛**
 **❅─────✧❅✦❅✧─────❅**
 """,
-             reply_markup=InlineKeyboardMarkup([
-                    [InlineKeyboardButton(button_text, url=deep_link)],
-                    [InlineKeyboardButton(text=add_button_text, url=add_link)],
-                ])
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [InlineKeyboardButton(button_text, url=deep_link)],
+                        [InlineKeyboardButton(text=add_button_text, url=add_link)],
+                    ]
+                ),
             )
         except Exception as e:
             LOGGER.error(e)
-
-
-
-

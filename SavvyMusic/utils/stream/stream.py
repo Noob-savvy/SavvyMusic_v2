@@ -1,5 +1,3 @@
-
-
 import os
 from random import randint
 from typing import Union
@@ -106,7 +104,7 @@ async def stream(
                     "video" if video else "audio",
                     forceplay=forceplay,
                 )
-                
+
                 img = await gen_thumb(vidid, user_id)
                 button = stream_markup(_, vidid, chat_id)
                 run = await app.send_photo(
@@ -164,7 +162,7 @@ async def stream(
                 user_id,
                 "video" if video else "audio",
             )
-            
+
             position = len(db.get(chat_id)) - 1
             qimg = await gen_qthumb(vidid, user_id)
             button = queue_markup(_, vidid, chat_id)
@@ -357,7 +355,7 @@ async def stream(
                 "video" if video else "audio",
                 forceplay=forceplay,
             )
-            
+
             img = await gen_thumb(vidid, user_id)
             button = telegram_markup(_, chat_id)
             run = await app.send_photo(

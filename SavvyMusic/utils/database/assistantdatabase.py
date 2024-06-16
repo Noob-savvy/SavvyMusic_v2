@@ -1,5 +1,3 @@
-
-
 import random
 
 from SavvyMusic import userbot

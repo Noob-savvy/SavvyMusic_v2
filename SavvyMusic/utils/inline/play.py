@@ -3,6 +3,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from config import SUPPORT_GROUP, SUPPORT_CHANNEL, OWNER_ID
 
 from SavvyMusic.utils.formatters import time_to_seconds
+
 ## After Edits with Timer Bar
 
 ## After Edits with Timer Bar
@@ -45,9 +46,7 @@ def stream_markup_timer(_, videoid, chat_id, played, dur):
                 text=_["PL_B_2"],
                 callback_data=f"add_playlist {videoid}",
             ),
-            InlineKeyboardButton(
-                text=" ᴏᴡɴᴇʀ ", url=OWNER_ID
-            ),
+            InlineKeyboardButton(text=" ᴏᴡɴᴇʀ ", url=OWNER_ID),
         ],
         [
             InlineKeyboardButton(
@@ -56,7 +55,6 @@ def stream_markup_timer(_, videoid, chat_id, played, dur):
             ),
             InlineKeyboardButton(text="ᴄʜᴀᴛ", url=f"https://t.me/savvy_robot_support"),
         ],
-        
     ]
     return buttons
 
@@ -98,7 +96,7 @@ def telegram_markup_timer(_, chat_id, played, dur):
                 text=_["PL_B_2"],
                 callback_data=f"add_playlist {videoid}",
             ),
-            InlineKeyboardButton(text="ᴏᴡɴᴇʀ", url=OWNER_ID ),
+            InlineKeyboardButton(text="ᴏᴡɴᴇʀ", url=OWNER_ID),
         ],
         [
             InlineKeyboardButton(
@@ -121,7 +119,7 @@ def stream_markup(_, videoid, chat_id):
                 text=_["PL_B_2"],
                 callback_data=f"add_playlist {videoid}",
             ),
-            InlineKeyboardButton(text="ᴏᴡɴᴇʀ", url=OWNER_ID ),
+            InlineKeyboardButton(text="ᴏᴡɴᴇʀ", url=OWNER_ID),
         ],
         [
             InlineKeyboardButton(

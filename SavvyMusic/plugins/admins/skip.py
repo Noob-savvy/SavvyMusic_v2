@@ -1,4 +1,3 @@
-
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardMarkup, Message
 
@@ -93,7 +92,7 @@ async def skip(cli, message: Message, _, chat_id):
     queued = check[0]["file"]
     title = (check[0]["title"]).title()
     user = check[0]["by"]
-    
+
     user_id = message.from_user.id
     streamtype = check[0]["streamtype"]
     videoid = check[0]["vidid"]
@@ -107,7 +106,7 @@ async def skip(cli, message: Message, _, chat_id):
             await Savvy.skip_stream(chat_id, link, video=status)
         except Exception:
             return await message.reply_text(_["call_9"])
-        
+
         button = telegram_markup(_, chat_id)
         img = await gen_thumb(videoid, user_id)
         run = await message.reply_photo(
@@ -135,7 +134,7 @@ async def skip(cli, message: Message, _, chat_id):
             await Savvy.skip_stream(chat_id, file_path, video=status)
         except Exception:
             return await mystic.edit_text(_["call_9"])
-        
+
         button = stream_markup(_, videoid, chat_id)
         img = await gen_thumb(videoid, user_id)
         run = await message.reply_photo(
@@ -172,9 +171,11 @@ async def skip(cli, message: Message, _, chat_id):
         if videoid == "telegram":
             button = telegram_markup(_, chat_id)
             run = await message.reply_photo(
-                photo=config.TELEGRAM_AUDIO_URL
-                if str(streamtype) == "audio"
-                else config.TELEGRAM_VIDEO_URL,
+                photo=(
+                    config.TELEGRAM_AUDIO_URL
+                    if str(streamtype) == "audio"
+                    else config.TELEGRAM_VIDEO_URL
+                ),
                 caption=_["stream_3"].format(title, check[0]["dur"], user),
                 reply_markup=InlineKeyboardMarkup(button),
             )
@@ -183,16 +184,18 @@ async def skip(cli, message: Message, _, chat_id):
         elif videoid == "soundcloud":
             button = telegram_markup(_, chat_id)
             run = await message.reply_photo(
-                photo=config.SOUNCLOUD_IMG_URL
-                if str(streamtype) == "audio"
-                else config.TELEGRAM_VIDEO_URL,
+                photo=(
+                    config.SOUNCLOUD_IMG_URL
+                    if str(streamtype) == "audio"
+                    else config.TELEGRAM_VIDEO_URL
+                ),
                 caption=_["stream_3"].format(title, check[0]["dur"], user),
                 reply_markup=InlineKeyboardMarkup(button),
             )
             db[chat_id][0]["mystic"] = run
             db[chat_id][0]["markup"] = "tg"
         else:
-            
+
             button = stream_markup(_, videoid, chat_id)
             img = await gen_thumb(videoid, user_id)
             run = await message.reply_photo(

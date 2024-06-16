@@ -1,5 +1,3 @@
-
-
 from strings import get_string
 from SavvyMusic.misc import SUDOERS
 from SavvyMusic.utils.database import get_lang, is_commanddelete_on, is_maintenance

@@ -1,5 +1,3 @@
-
-
 from pyrogram.types import InlineQueryResultArticle, InputTextMessageContent
 
 answer = []

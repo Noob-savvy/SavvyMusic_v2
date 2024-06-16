@@ -1,6 +1,3 @@
-
-
-
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.enums import ChatType
 from config import adminlist
